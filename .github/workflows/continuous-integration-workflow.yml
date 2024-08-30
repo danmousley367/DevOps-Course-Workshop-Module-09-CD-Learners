@@ -42,3 +42,5 @@ jobs:
         tag: ${{ github.ref_name }}
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Log
+      run: curl -dH --fail -X POST '${{ secrets.AZURE_WEBHOOK }}'
