@@ -1,5 +1,8 @@
 name: Continuous Integration
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -33,6 +36,7 @@ jobs:
     - name: Dockerize
       uses: manusa/actions-publish-docker@v1.1.2
       with:
-        name: danmou367/dotnettemplate:${{ github.ref_name }}
+        name: danmou367/dotnettemplate
+        tag: ${{ github.ref_name }}
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
