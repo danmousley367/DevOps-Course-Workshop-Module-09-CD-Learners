@@ -25,3 +25,14 @@ jobs:
     - name: Typescript test
       run: npm run test
       working-directory: ./DotnetTemplate.Web
+  publish_image:
+    name: Publish docker image
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Dockerize
+      uses: manusa/actions-publish-docker@v1.1.2
+      with:
+        name: danmou367/dotnettemplate:${{ github.ref_name }}
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
